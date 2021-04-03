@@ -3,8 +3,10 @@ const app = express();
 const mongoose = require("mongoose");
 const db = require("./config/keys").mongoURI;
 const cors = require("cors");
-const User = require("./models/User");
+
+//Routes
 const userRoutes = require("./routes/Users");
+const projectRoutes = require("./routes/Projects");
 
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -24,6 +26,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", userRoutes);
+app.use("/projects", projectRoutes);
 
 const PORT = process.env.PORT || 5000;
 
