@@ -3,7 +3,13 @@ const router = express.Router();
 const User = require("../models/User");
 
 router.get("/", (req, res) => {
-  res.send("USERS");
+  User.find({}, (err, users) => {
+    const userMap = {};
+    users.forEach((user) => {
+      userMap[user._id] = user;
+    });
+    res.send(userMap);
+  });
 });
 
 router.post("/register", (req, res) => {

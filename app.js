@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const db = require("./config/keys").mongoURI;
+const cors = require("cors");
 const User = require("./models/User");
 const userRoutes = require("./routes/Users");
 
@@ -16,6 +17,7 @@ app.use(
   })
 );
 
+app.use(cors());
 app.use(express.json());
 app.get("/", (req, res) => {
   res.send("INDEX");

@@ -17,6 +17,20 @@ const ProjectSchema = new Schema(
       type: String,
       required: true,
     },
+    //project has many issues
+    issues: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Issue",
+      },
+    ],
+    //project has many users
+    users: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   { timestamps: true }
 );
