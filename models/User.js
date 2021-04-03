@@ -27,6 +27,13 @@ const UserSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Project",
     },
+    //user has many issues
+    issues: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Issue",
+      },
+    ],
   },
   { timestamps: true }
 );
