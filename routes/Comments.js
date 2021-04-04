@@ -1,5 +1,5 @@
 const express = require("express");
-const { Mongoose } = require("mongoose");
+
 const router = express.Router();
 const Comment = require("../models/Comment");
 
@@ -16,7 +16,7 @@ router.post(":issueId/newComment", (req, res) => {
 
 router.get(":issueId/comments", (req, res) => {
   const issueId = req.params.issueId;
-  Mongoose.find({ author: issueId }, (err, comments) => {
+  Comment.find({ author: issueId }, (err, comments) => {
     const commentsMap = {};
     comments.forEach((comment) => {
       commentsMap[comment._id] = comment;
@@ -76,3 +76,5 @@ router.put("/:commentId", (req, res) => {
       });
     });
 });
+
+module.exports = router;
