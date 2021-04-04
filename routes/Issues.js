@@ -27,6 +27,17 @@ router.get("/:issueId", (req, res) => {
     });
 });
 
+router.get(":projectId/issues", (req, res) => {
+  const projectId = req.params.projectId;
+  Issue.find({ forProject: projectId }, (err, issues) => {
+    const issuesMap = {};
+    issues.forEach((issue) => {
+      issuesMap[issue._id] = issue;
+    });
+    res.send(issuesMaps);
+  });
+});
+
 //delete an issue
 router.delete("/:issueId", (req, res) => {
   Issue.findByIdAndRemove(req.params.issueId)
